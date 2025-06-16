@@ -3,7 +3,7 @@ const { ModuleFederationPlugin } = require("webpack").container;
 const path = require("path");
 
 module.exports = {
-  entry: "./src/bootstrap.js",
+  entry: "./src/index.js",
   mode: "development",
   devServer: {
     port: 3000,
@@ -32,8 +32,8 @@ module.exports = {
       remotes: { mfe_app: "mfe_app@http://localhost:3001/remoteEntry.js" },
       
       shared: {
-        react: { singleton: true },
-        "react-dom": { singleton: true }
+        react: { singleton: true ,requiredVersion: false },
+        "react-dom": { singleton: true ,requiredVersion: false}
       }
     }),
     new HtmlWebpackPlugin({

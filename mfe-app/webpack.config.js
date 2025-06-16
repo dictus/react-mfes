@@ -27,13 +27,13 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "mfe-app",
+      name: "mfe_app",
       filename: "remoteEntry.js",
       
       exposes: { "./App": "./src/App" },
       shared: {
-        react: { singleton: true },
-        "react-dom": { singleton: true }
+        react: { singleton: true ,requiredVersion: false },
+               "react-dom": { singleton: true ,requiredVersion: false}
       }
     }),
     new HtmlWebpackPlugin({
