@@ -1,0 +1,45 @@
+# Node modules
+node_modules/
+
+# Build files
+build/
+dist/
+
+# Logs
+*.log
+
+# Temporary files
+temp/
+.cache/
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.swp
+
+# Dependencies and lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Public folder artifacts
+public/*.map
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+
+# Multi-module considerations
+apps/*/node_modules/
+apps/*/build/
+packages/*/node_modules/
+packages/*/dist/
+/mfe-app/node_modules/
+/main-app/node_modules/
