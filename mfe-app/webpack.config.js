@@ -3,7 +3,7 @@ const { ModuleFederationPlugin } = require("webpack").container;
 const path = require("path");
 
 module.exports = {
-  entry: "./src/bootstrap.js",
+  entry: "./src/index.js",
   mode: "development",
   devServer: {
     port: 3001,
@@ -16,10 +16,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        loader: "babel-loader",
-        exclude: /node_modules/
-      },
+      test: /\.jsx?$/,
+      loader: "babel-loader",
+      exclude: /node_modules/
+    },
+    {
+      test: /\.css$/i,
+      use: ["style-loader", "css-loader"], // ← Add this
+    }
     ],
   },
   resolve: {
@@ -32,8 +36,11 @@ module.exports = {
       
       exposes: { "./App": "./src/App" },
       shared: {
-        react: { singleton: true ,requiredVersion: false },
-               "react-dom": { singleton: true ,requiredVersion: false}
+        react: { singleton: true },
+        "react-dom": { singleton: true },
+        "@salt-ds/core": { singleton: true },
+        "@salt-ds/theme": { singleton: true },
+        "@salt-ds/icons": { singleton: true }
       }
     }),
     new HtmlWebpackPlugin({

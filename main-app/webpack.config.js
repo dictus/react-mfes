@@ -16,10 +16,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        loader: "babel-loader",
-        exclude: /node_modules/
-      },
+      test: /\.jsx?$/,
+      loader: "babel-loader",
+      exclude: /node_modules/
+    },
+    {
+      test: /\.css$/i,
+      use: ["style-loader", "css-loader"], // ← Add this
+    }
     ],
   },
   resolve: {
@@ -27,13 +31,16 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "main-app",
+      name: "main_app",
       
       remotes: { mfe_app: "mfe_app@http://localhost:3001/remoteEntry.js" },
       
       shared: {
-        react: { singleton: true ,requiredVersion: false },
-        "react-dom": { singleton: true ,requiredVersion: false}
+        react: { singleton: true },
+        "react-dom": { singleton: true },
+        "@salt-ds/core": { singleton: true },
+        "@salt-ds/theme": { singleton: true },
+        "@salt-ds/icons": { singleton: true }
       }
     }),
     new HtmlWebpackPlugin({
